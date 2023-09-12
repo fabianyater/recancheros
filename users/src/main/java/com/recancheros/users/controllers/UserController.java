@@ -20,6 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PostMapping("/signup")
     public ResponseEntity<Void> createUser(@RequestBody UserRequest userRequest) throws UserAlreadyExistsException {
         userService.createUser(userRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
