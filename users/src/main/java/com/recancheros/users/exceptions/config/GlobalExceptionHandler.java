@@ -1,5 +1,6 @@
 package com.recancheros.users.exceptions.config;
 
+import com.recancheros.users.exceptions.AuthenticationFailedException;
 import com.recancheros.users.exceptions.UserAlreadyExistsException;
 import com.recancheros.users.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,18 @@ public class GlobalExceptionHandler {
                 ExceptionResponse.USER_ALREADY_EXISTS.getMessage()
         );
         return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(AuthenticationFailedException.class)
+    public ResponseEntity<ErrorResponse> handleAuthenticationFailedException(
+            AuthenticationFailedException authenticationFailedException) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+                ExceptionResponse.AUTHENTICATION_FAILED.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(errorResponse);
     }
 }

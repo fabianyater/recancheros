@@ -1,6 +1,7 @@
 package com.recancheros.users.services.impl;
 
 import com.recancheros.users.config.jwt.JwtUtils;
+import com.recancheros.users.exceptions.AuthenticationFailedException;
 import com.recancheros.users.model.dto.UserRequest;
 import com.recancheros.users.model.dto.UserResponse;
 import com.recancheros.users.model.entity.User;
@@ -17,14 +18,14 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private final Logger logger = LoggerFactory.getLogger(AuthService.class);
+    private final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
     private final AuthenticationManager authenticationManager;
     private final UserMapper userMapper;
     private final JwtUtils jwtUtils;
     private final UserServiceImpl userService;
 
     @Override
-    public UserResponse authenticate(UserRequest userRequest) throws Exception {
+    public UserResponse authenticate(UserRequest userRequest) throws AuthenticationFailedException {
 
         UserResponse userResponse;
         try {
@@ -34,8 +35,8 @@ public class AuthServiceImpl implements AuthService {
                             userRequest.getPassword())
             );
         } catch (Exception e) {
-            logger.error("Authentication failed {}", e);
-            throw new Exception("Authentication failed", e);
+            logger.error("Authentication failed {0}", e);
+            throw new AuthenticationFailedException();
         }
 
         final UserDetails userDetails = userService.loadUserByUsername(userRequest.getUsername());

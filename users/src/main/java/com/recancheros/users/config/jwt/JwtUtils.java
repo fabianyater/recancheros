@@ -14,11 +14,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtUtils {
-    private static final long ACCESS_TOKEN_EXPIRATION_MS = 15 * 60 * 1000;
+    private static final long ACCESS_TOKEN_EXPIRATION_MS = 15 * 60 * (long) 1000;
     SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public String generateToken(UserDetails userDetails) {
@@ -27,7 +26,7 @@ public class JwtUtils {
         claims.put("roles", userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList()));
+                .toList());
 
         return createToken(claims);
     }
