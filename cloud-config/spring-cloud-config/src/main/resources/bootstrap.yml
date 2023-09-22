@@ -11,5 +11,5 @@ spring:
         git:
           uri: https://github.com/fabianyater/spring-cloud-config.git
           username: fabianyater
-          password: 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
+          password: ${GITHUB_TOKEN}
           default-label: main
