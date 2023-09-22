@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/fabianyater/spring-cloud-config.git
+          uri: https://github.com/fabianyater/config-repo.git
           username: fabianyater
           password: ${GITHUB_TOKEN}
           default-label: main
