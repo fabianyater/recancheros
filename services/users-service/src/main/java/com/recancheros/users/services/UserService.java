@@ -12,4 +12,5 @@ public interface UserService {
     void createUser(UserRequest userRequest) throws UserAlreadyExistsException;
     Optional<UserResponse> getUserById(Long id) throws UserNotFoundException;
     List<UserResponse> getAllUsers();
+    String getRoleByUserName(String username);
 }
