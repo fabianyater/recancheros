@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -34,5 +35,11 @@ public class SportCenterServiceImpl implements SportCenterService {
         }
 
         return Optional.ofNullable(sportCenterResponse);
+    }
+
+    @Override
+    public List<SportCenterResponse> getAllSportCenters() {
+        List<SportCenter> sportCenters = sportCenterRepository.findAll();
+        return sportCenterMapper.toSportCenterResponseList(sportCenters);
     }
 }
