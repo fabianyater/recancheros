@@ -3,6 +3,8 @@ package com.recancheros.sportcenters.model.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class SportCenterResponse {
@@ -10,5 +12,7 @@ public class SportCenterResponse {
     private String address;
     private String description;
     private String numberPhone;
-    private String comment;
+    private List<SportsResponse> sports;
+    private List<ServicesResponse> services;
+    private List<FieldsResponse> fields;
 }
