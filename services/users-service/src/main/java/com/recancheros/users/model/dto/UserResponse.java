@@ -14,6 +14,5 @@ public class UserResponse {
     private String email;
     private String phoneNumber;
     private String jwt;
-    private Set<String> roles;
-    private SportCenterDTO sportCenterDTO;
+    private String role;
 }
