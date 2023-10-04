@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -18,15 +19,14 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
     private static final long ACCESS_TOKEN_EXPIRATION_MS = 15 * 60 * (long) 1000;
-    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    @Value("${jwt.secret}")
+    private String key;
 
-    public String generateToken(UserDetails userDetails) {
+
+    public String generateToken(UserDetails userDetails, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", userDetails.getUsername());
-        claims.put("roles", userDetails.getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList());
+        claims.put("role", role);
 
         return createToken(claims);
     }
@@ -36,7 +36,7 @@ public class JwtUtils {
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_MS))
-                .signWith(Keys.hmacShaKeyFor(key.getEncoded()))
+                .signWith(Keys.hmacShaKeyFor(key.getBytes()))
                 .compact();
     }
 
@@ -60,7 +60,7 @@ public class JwtUtils {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(key.getEncoded())
+                .setSigningKey(key.getBytes())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
