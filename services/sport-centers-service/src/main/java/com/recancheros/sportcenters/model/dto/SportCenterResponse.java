@@ -12,7 +12,7 @@ public class SportCenterResponse {
     private String address;
     private String description;
     private String numberPhone;
-    private List<SportsResponse> sports;
-    private List<ServicesResponse> services;
-    private List<FieldsResponse> fields;
+    private List<SportResponse> sports;
+    private List<ServiceResponse> services;
+    private List<FieldResponse> fields;
 }

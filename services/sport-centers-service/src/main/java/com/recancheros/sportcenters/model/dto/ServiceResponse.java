@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ServicesResponse {
+public class ServiceResponse {
     private String name;
 }

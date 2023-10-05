@@ -1,20 +1,19 @@
 package com.recancheros.sportcenters.services.impl;
 
 import com.recancheros.sportcenters.model.dto.SportRequest;
-import com.recancheros.sportcenters.model.entity.Sports;
+import com.recancheros.sportcenters.model.dto.SportResponse;
+import com.recancheros.sportcenters.model.entity.Sport;
 import com.recancheros.sportcenters.model.mapper.SportMapper;
 import com.recancheros.sportcenters.repositories.SportsRepository;
-import com.recancheros.sportcenters.services.SportsService;
+import com.recancheros.sportcenters.services.SportService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class SportsImpl implements SportsService {
+public class SportImpl implements SportService {
     private final SportsRepository sportsRepository;
     private final SportMapper sportMapper;
 
@@ -24,7 +23,8 @@ public class SportsImpl implements SportsService {
     }
 
     @Override
-    public List<Sports> getAllSports() {
-        return sportsRepository.findAll();
+    public List<SportResponse> getAllSports() {
+        List<Sport> sports = sportsRepository.findAll();
+        return sportMapper.toSportResponseList(sports);
     }
 }

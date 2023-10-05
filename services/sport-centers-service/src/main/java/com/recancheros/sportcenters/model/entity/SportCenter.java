@@ -32,12 +32,12 @@ public class SportCenter {
     private String comment;
 
     @OneToMany(mappedBy = "sportCenter", orphanRemoval = true)
-    private Set<Services> services = new LinkedHashSet<>();
+    private Set<Service> services = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "sportCenter", orphanRemoval = true)
-    private Set<Sports> sports = new LinkedHashSet<>();
+    private Set<Sport> sports = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "sportCenter", orphanRemoval = true)
-    private Set<Fields> fields = new LinkedHashSet<>();
+    private Set<Field> fields = new LinkedHashSet<>();
 
 }

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Table(name = "fields")
 @Getter
 @Setter
-public class Fields {
+public class Field {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

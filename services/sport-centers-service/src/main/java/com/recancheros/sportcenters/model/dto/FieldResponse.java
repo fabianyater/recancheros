@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FieldsResponse {
+public class FieldResponse {
     private String name;
     private String surface;
     private String type;
