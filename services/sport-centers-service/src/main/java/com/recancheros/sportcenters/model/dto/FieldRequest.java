@@ -5,10 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FieldResponse {
-    private Long id;
+public class FieldRequest {
     private String name;
-    private String sportName;
+    private Long sportId;
     private Long sportCenterId;
-
 }
