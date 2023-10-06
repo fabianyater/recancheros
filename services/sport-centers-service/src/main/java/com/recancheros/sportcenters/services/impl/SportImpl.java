@@ -23,8 +23,8 @@ public class SportImpl implements SportService {
     }
 
     @Override
-    public List<SportResponse> getAllSports() {
-        List<Sport> sports = sportsRepository.findAll();
+    public List<SportResponse> getAllSportsBySportCenterId(Long sportCenterId) {
+        List<Sport> sports = sportsRepository.findBySportCenter_Id(sportCenterId);
         return sportMapper.toSportResponseList(sports);
     }
 }

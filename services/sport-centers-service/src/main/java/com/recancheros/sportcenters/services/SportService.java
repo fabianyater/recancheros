@@ -9,5 +9,5 @@ import java.util.List;
 public interface SportService {
     void addSport(SportRequest sportRequest);
 
-    List<SportResponse> getAllSports();
+    List<SportResponse> getAllSportsBySportCenterId(Long sportCenterId);
 }

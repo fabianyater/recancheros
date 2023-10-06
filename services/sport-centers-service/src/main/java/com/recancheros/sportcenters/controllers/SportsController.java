@@ -2,7 +2,6 @@ package com.recancheros.sportcenters.controllers;
 
 import com.recancheros.sportcenters.model.dto.SportRequest;
 import com.recancheros.sportcenters.model.dto.SportResponse;
-import com.recancheros.sportcenters.model.entity.Sport;
 import com.recancheros.sportcenters.services.SportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sport-centers-service/api/sports")
+@RequestMapping("/sport-centers-service/api/sportcenters/sports")
 public class SportsController {
     private final SportService sportService;
 
@@ -27,8 +26,9 @@ public class SportsController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<SportResponse>> getAllSports() {
-        return new ResponseEntity<>(sportService.getAllSports(), HttpStatus.OK);
+    @GetMapping("/{sportCenterId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<List<SportResponse>> getAllSportsBySportCenterId(@PathVariable("sportCenterId") Long sportCenterId) {
+        return new ResponseEntity<>(sportService.getAllSportsBySportCenterId(sportCenterId), HttpStatus.OK);
     }
 }
