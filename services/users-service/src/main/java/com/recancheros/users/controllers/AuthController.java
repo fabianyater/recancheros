@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/users-service/api/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody UserRequest userRequest) throws Exception {
+    @PostMapping
+    public ResponseEntity<UserResponse> authenticate(@RequestBody UserRequest userRequest) throws Exception {
         UserResponse userResponse = authService.authenticate(userRequest);
 
         return new ResponseEntity<>(userResponse, HttpStatus.OK);

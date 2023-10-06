@@ -2,18 +2,15 @@ package com.recancheros.sportcenters.controllers;
 
 import com.recancheros.sportcenters.model.dto.SportCenterRequest;
 import com.recancheros.sportcenters.model.dto.SportCenterResponse;
-import com.recancheros.sportcenters.model.entity.SportCenter;
 import com.recancheros.sportcenters.services.SportCenterService;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/sport-centers-service/api/sportcenters")
+@RequestMapping("/api/sportcenters")
 public class SportCenterController {
     private final SportCenterService sportCenterService;
 
