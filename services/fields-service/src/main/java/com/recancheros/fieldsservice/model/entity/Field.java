@@ -17,7 +17,5 @@ public class Field {
     private String name;
 
     private Long sportCenterId;
-
     private Long sportId;
-
 }

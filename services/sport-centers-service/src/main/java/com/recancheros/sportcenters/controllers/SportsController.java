@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/sports")
@@ -24,6 +25,19 @@ public class SportsController {
     public ResponseEntity<Void> addSport(@RequestBody SportRequest sportRequest) {
         sportService.addSport(sportRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/{sportId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<SportResponse> getSportBySportId(@PathVariable("sportId") Long sportId) throws Exception {
+        Optional<SportResponse> sportResponse = sportService.getSportById(sportId);
+
+        if (sportResponse.isPresent()) {
+            SportResponse newSportResponse = sportResponse.get();
+            return new ResponseEntity<>(newSportResponse, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/{sportCenterId}")

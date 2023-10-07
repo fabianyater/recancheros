@@ -1,5 +1,7 @@
 package com.recancheros.fieldsservice.services.impl;
 
+import com.recancheros.fieldsservice.feign.sportcenterclient.SportCenterDto;
+import com.recancheros.fieldsservice.feign.sportcenterclient.SportCenterServiceClient;
 import com.recancheros.fieldsservice.model.dto.FieldRequest;
 import com.recancheros.fieldsservice.model.dto.FieldResponse;
 import com.recancheros.fieldsservice.model.entity.Field;
@@ -16,6 +18,7 @@ import java.util.List;
 public class FieldServiceImpl implements FieldService {
     private final FieldRepository fieldRepository;
     private final FieldMapper fieldMapper;
+    private final SportCenterServiceClient sportCenterServiceClient;
 
     @Override
     public void addField(FieldRequest fieldRequest) {
@@ -31,10 +34,14 @@ public class FieldServiceImpl implements FieldService {
     @Override
     public FieldResponse getFieldBySportCenterIdAndFieldId(Long sportCenterId, Long fieldId) {
         Field field = fieldRepository.findBySportCenterIdAndId(sportCenterId, fieldId);
+        SportCenterDto sportCenterDto = sportCenterServiceClient.getSportCenterById(field.getSportCenterId());
+
         FieldResponse fieldResponse = null;
 
         if (field != null) {
             fieldResponse = fieldMapper.toFieldResponse(field);
+            fieldResponse.setSportCenterName(sportCenterDto.getName());
+            fieldResponse.setSportCenterAddress(sportCenterDto.getAddress());
         }
 
         return fieldResponse;

@@ -30,9 +30,9 @@ public class SportCenterController {
         return new ResponseEntity<>(sportCenterService.getAllSportCenters(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SportCenterResponse> getSportCenterById(@PathVariable Long id) throws Exception {
-        return sportCenterService.getSportCenterById(id)
+    @GetMapping("/{sportCenterId}")
+    public ResponseEntity<SportCenterResponse> getSportCenterById(@PathVariable Long sportCenterId) throws Exception {
+        return sportCenterService.getSportCenterById(sportCenterId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
