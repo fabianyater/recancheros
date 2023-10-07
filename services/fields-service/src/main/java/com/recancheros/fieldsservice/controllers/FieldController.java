@@ -1,8 +1,8 @@
-package com.recancheros.sportcenters.controllers;
+package com.recancheros.fieldsservice.controllers;
 
-import com.recancheros.sportcenters.model.dto.FieldRequest;
-import com.recancheros.sportcenters.model.dto.FieldResponse;
-import com.recancheros.sportcenters.services.FieldService;
+import com.recancheros.fieldsservice.model.dto.FieldRequest;
+import com.recancheros.fieldsservice.model.dto.FieldResponse;
+import com.recancheros.fieldsservice.services.FieldService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sport-centers-service/api/sportcenters/fields")
+@RequestMapping("/api/fields")
 @AllArgsConstructor
 public class FieldController {
     private final FieldService fieldService;

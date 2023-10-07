@@ -1,4 +1,4 @@
-package com.recancheros.sportcenters.model.dto;
+package com.recancheros.fieldsservice.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +10,4 @@ public class FieldResponse {
     private String name;
     private String sportName;
     private Long sportCenterId;
-
 }

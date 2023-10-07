@@ -1,4 +1,4 @@
-package com.recancheros.sportcenters.model.dto;
+package com.recancheros.fieldsservice.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class FieldRequest {
     private String name;
-    private Long sportId;
     private Long sportCenterId;
+    private Long sportId;
 }

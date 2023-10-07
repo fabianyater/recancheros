@@ -1,11 +1,11 @@
-package com.recancheros.sportcenters.services.impl;
+package com.recancheros.fieldsservice.services.impl;
 
-import com.recancheros.sportcenters.model.dto.FieldRequest;
-import com.recancheros.sportcenters.model.dto.FieldResponse;
-import com.recancheros.sportcenters.model.entity.Field;
-import com.recancheros.sportcenters.model.mapper.FieldMapper;
-import com.recancheros.sportcenters.repositories.FieldRepository;
-import com.recancheros.sportcenters.services.FieldService;
+import com.recancheros.fieldsservice.model.dto.FieldRequest;
+import com.recancheros.fieldsservice.model.dto.FieldResponse;
+import com.recancheros.fieldsservice.model.entity.Field;
+import com.recancheros.fieldsservice.model.mapper.FieldMapper;
+import com.recancheros.fieldsservice.repositories.FieldRepository;
+import com.recancheros.fieldsservice.services.FieldService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +24,13 @@ public class FieldServiceImpl implements FieldService {
 
     @Override
     public List<FieldResponse> getFieldsBySportCenterId(Long sportCenterId) {
-        List<Field> fields = fieldRepository.findBySportCenter_Id(sportCenterId);
+        List<Field> fields = fieldRepository.findBySportCenterId(sportCenterId);
         return fieldMapper.toFieldResponseList(fields);
     }
 
     @Override
     public FieldResponse getFieldBySportCenterIdAndFieldId(Long sportCenterId, Long fieldId) {
-        Field field = fieldRepository.findBySportCenter_IdAndId(sportCenterId, fieldId);
+        Field field = fieldRepository.findBySportCenterIdAndId(sportCenterId, fieldId);
         FieldResponse fieldResponse = null;
 
         if (field != null) {

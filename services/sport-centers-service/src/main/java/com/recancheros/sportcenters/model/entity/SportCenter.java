@@ -36,8 +36,4 @@ public class SportCenter {
 
     @OneToMany(mappedBy = "sportCenter", orphanRemoval = true)
     private Set<Sport> sports = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "sportCenter", orphanRemoval = true)
-    private Set<Field> fields = new LinkedHashSet<>();
-
 }

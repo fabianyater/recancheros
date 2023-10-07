@@ -1,4 +1,4 @@
-package com.recancheros.sportcenters.model.entity;
+package com.recancheros.fieldsservice.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,12 +16,8 @@ public class Field {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "sportcenter_id")
-    private SportCenter sportCenter;
+    private Long sportCenterId;
 
-    @ManyToOne
-    @JoinColumn(name = "sport_id")
-    private Sport sport;
+    private Long sportId;
 
 }

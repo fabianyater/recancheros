@@ -14,5 +14,4 @@ public class SportCenterResponse {
     private String numberPhone;
     private List<SportResponse> sports;
     private List<ServiceResponse> services;
-    private List<FieldResponse> fields;
 }

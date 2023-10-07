@@ -1,7 +1,7 @@
-package com.recancheros.sportcenters.services;
+package com.recancheros.fieldsservice.services;
 
-import com.recancheros.sportcenters.model.dto.FieldRequest;
-import com.recancheros.sportcenters.model.dto.FieldResponse;
+import com.recancheros.fieldsservice.model.dto.FieldRequest;
+import com.recancheros.fieldsservice.model.dto.FieldResponse;
 
 import java.util.List;
 
