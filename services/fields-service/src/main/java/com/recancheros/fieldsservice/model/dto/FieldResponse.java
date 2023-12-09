@@ -10,6 +10,7 @@ public class FieldResponse {
     private String name;
     private Long sportCenterId;
     private Long sportId;
+    private String sportName;
     private String sportCenterName;
     private String sportCenterAddress;
 }

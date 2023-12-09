@@ -2,6 +2,7 @@ package com.recancheros.fieldsservice.services.impl;
 
 import com.recancheros.fieldsservice.feign.sportcenterclient.SportCenterDto;
 import com.recancheros.fieldsservice.feign.sportcenterclient.SportCenterServiceClient;
+import com.recancheros.fieldsservice.feign.sportcenterclient.SportsDto;
 import com.recancheros.fieldsservice.model.dto.FieldRequest;
 import com.recancheros.fieldsservice.model.dto.FieldResponse;
 import com.recancheros.fieldsservice.model.entity.Field;
@@ -35,6 +36,7 @@ public class FieldServiceImpl implements FieldService {
     public FieldResponse getFieldBySportCenterIdAndFieldId(Long sportCenterId, Long fieldId) {
         Field field = fieldRepository.findBySportCenterIdAndId(sportCenterId, fieldId);
         SportCenterDto sportCenterDto = sportCenterServiceClient.getSportCenterById(field.getSportCenterId());
+        SportsDto sportsDto = sportCenterServiceClient.getSportsById(field.getSportId());
 
         FieldResponse fieldResponse = null;
 
@@ -42,6 +44,7 @@ public class FieldServiceImpl implements FieldService {
             fieldResponse = fieldMapper.toFieldResponse(field);
             fieldResponse.setSportCenterName(sportCenterDto.getName());
             fieldResponse.setSportCenterAddress(sportCenterDto.getAddress());
+            fieldResponse.setSportName(sportsDto.getName());
         }
 
         return fieldResponse;

@@ -9,4 +9,7 @@ public interface SportCenterServiceClient {
 
     @GetMapping("/api/sportcenters/{sportCenterId}")
     SportCenterDto getSportCenterById(@PathVariable("sportCenterId") Long sportCenterId);
+
+    @GetMapping("/api/sports/{sportId}")
+    SportsDto getSportsById(@PathVariable("sportId") Long sportId);
 }

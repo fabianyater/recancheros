@@ -28,7 +28,6 @@ public class SportsController {
     }
 
     @GetMapping("/{sportId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<SportResponse> getSportBySportId(@PathVariable("sportId") Long sportId) throws Exception {
         Optional<SportResponse> sportResponse = sportService.getSportById(sportId);
 
@@ -40,7 +39,7 @@ public class SportsController {
         }
     }
 
-    @GetMapping("/{sportCenterId}")
+    @GetMapping("/sportcenter/{sportCenterId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<SportResponse>> getAllSportsBySportCenterId(@PathVariable("sportCenterId") Long sportCenterId) {
         return new ResponseEntity<>(sportService.getAllSportsBySportCenterId(sportCenterId), HttpStatus.OK);
